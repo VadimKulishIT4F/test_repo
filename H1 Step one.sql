@@ -38,3 +38,9 @@ WITH (
     OIDS = FALSE
 )
 TABLESPACE pg_default;
+
+
+--Команда импортирует данные в созданную таблицу. Выполнять через терминал  SQL Shell,
+--так как в другом способе могут возникнуть проблемы с доступом к файлу
+
+\copy public.bond_description_task FROM 'C:/data/bond_description_task.csv' DELIMITER ';' CSV HEADER ENCODING 'WIN 1251';
