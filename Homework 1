@@ -1,1 +1,34 @@
-
+- создаем таблицу 
+CREATE TABLE public.bond_description_task
+(
+   "ISIN, RegCode, NRDCode" varchar(12),
+	"FinToolType" text,
+	"SecurityType" text NOT NULL,
+	"SecurityKind" text,
+	"CouponType" text,
+	"RateTypeNameRus_NRD" text NOT NULL,
+	"CouponTypeName_NRD" text NOT NULL,
+	"HaveOffer" boolean,
+	"AmortisedMty" boolean,
+	"MaturityGroup" text,
+	"IsConvertible" boolean,
+	"ISINCode" varchar (12),
+	"Status" text,
+	"HaveDefault" boolean,
+	"GuaranteeType" text NOT NULL,
+	"GuaranteeAmount" text NOT NULL,
+	"BorrowerName" text,
+	"BorrowerOKPO" integer NOT NULL,
+	"BorrowerSector" text NOT NULL,
+	"BorrowerUID" integer,
+	"IssuerName" text,
+	"IssuerName_NRD" text NOT NULL,
+	"IssuerOKPO" integer,
+	"NumGuarantors" smallint,
+	"EndMtyDate" date,
+	CONSTRAINT bond_description_task_pkey PRIMARY KEY ("ISIN, RegCode, NRDCode")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
