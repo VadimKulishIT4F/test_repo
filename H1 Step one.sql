@@ -1,4 +1,10 @@
+-- Видим что данные в экселе, поэтому для импорта сохраняем  файлы в формате CSV (файл/сохранить как)
+--(Для преподавателя - при импорте данных из файла bond_description_task была ошибка в столбцах HaveOffer, AmortisedMty и IsConvertible. 
+--по одному эмитенту данные в этих столбцах были в форме даты, а не boolean как в остальных строках,
+--по умолчанию проставлены вручную нулевые значения).
 
+-- Создаем первую таблицу bond_description_task  с нужными форматом и нужным количеством полей.
+DROP TABLE if exists public.bond_description_task;
 CREATE TABLE public.bond_description_task
 (
    "ISIN, RegCode, NRDCode" varchar(12),
