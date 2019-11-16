@@ -1,13 +1,20 @@
--- создаем таблицу 
+-- Видим что данные в экселе, поэтому для импорта сохраняем  файлы в формате CSV (файл/сохранить как)
+--(Для преподавателя - при импорте данных из файла bond_description_task была ошибка в столбцах HaveOffer, AmortisedMty и IsConvertible. 
+--по одному эмитенту данные в этих столбцах были в форме даты, а не boolean как в остальных строках,
+--по умолчанию проставлены вручную нулевые значения).
+
+-- Создаем первую таблицу bond_description_task  с нужными форматом и нужным количеством полей.
+DROP TABLE if exists public.bond_description_task;
+
 CREATE TABLE public.bond_description_task
 (
    "ISIN, RegCode, NRDCode" varchar(12),
 	"FinToolType" text,
-	"SecurityType" text NOT NULL,
+	"SecurityType" text,
 	"SecurityKind" text,
 	"CouponType" text,
-	"RateTypeNameRus_NRD" text NOT NULL,
-	"CouponTypeName_NRD" text NOT NULL,
+	"RateTypeNameRus_NRD" text,
+	"CouponTypeName_NRD" text L,
 	"HaveOffer" boolean,
 	"AmortisedMty" boolean,
 	"MaturityGroup" text,
@@ -15,11 +22,11 @@ CREATE TABLE public.bond_description_task
 	"ISINCode" varchar (12),
 	"Status" text,
 	"HaveDefault" boolean,
-	"GuaranteeType" text NOT NULL,
-	"GuaranteeAmount" text NOT NULL,
+	"GuaranteeType" text,
+	"GuaranteeAmount" text,
 	"BorrowerName" text,
-	"BorrowerOKPO" integer NOT NULL,
-	"BorrowerSector" text NOT NULL,
+	"BorrowerOKPO" integer,
+	"BorrowerSector" text,
 	"BorrowerUID" integer,
 	"IssuerName" text,
 	"IssuerName_NRD" text NOT NULL,
@@ -32,3 +39,8 @@ WITH (
     OIDS = FALSE
 )
 TABLESPACE pg_default;
+
+
+
+
+
