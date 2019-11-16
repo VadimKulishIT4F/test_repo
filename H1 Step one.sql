@@ -5,7 +5,7 @@
 DROP TABLE if exists public.bond_description_task;
 CREATE TABLE public.bond_description_task
 (
-   "ISIN, RegCode, NRDCode" varchar(12),
+   "ISIN, RegCode, NRDCode" varchar(12) NOT NULL,
 	"FinToolType" text,
 	"SecurityType" text,
 	"SecurityKind" text,
@@ -45,6 +45,7 @@ ALTER TABLE public.bond_description_task
 --(при импорте данных из файла bond_description_task была ошибка в столбцах HaveOffer, AmortisedMty и IsConvertible. 
 --по одному эмитенту данные в этих столбцах были типа даты, а не boolean как в остальных строках,
 --проставим нулевые значения в эти ячейки по умолчанию.
+
 --Команда импортирует данные в созданную таблицу. Выполнять через терминал  SQL Shell,
 --так как в другом способе могут возникнуть проблемы с доступом к файлу
 
@@ -56,8 +57,8 @@ ALTER TABLE public.bond_description_task
 DROP TABLE if exists public.quotes_task;
 CREATE TABLE public.quotes_task
 (
-    "ID" integer,
-    "TIME" integer,
+    "ID" integer NOT NULL,
+    "TIME" integer NOT NULL,
     "ACCRUEDINT" real,
     "ASK" real,
     "ASK_SIZE" integer,
@@ -90,6 +91,7 @@ CREATE TABLE public.quotes_task
     "Y2O_BID" real,
     "YIELD_ASK" real,
     "YIELD_BID" real
+    CONSTRAINT quotes_task_pkey FOREIGN KEY ("ID","ISIN")
 )
 WITH (
     OIDS = FALSE
@@ -101,7 +103,9 @@ TABLESPACE pg_default;
 ALTER TABLE public.quotes_task
     OWNER to postgres;
  
---(для импорта данных из файла quotes_task необходимо заменить запятые на точки в столбцах с данными типа real(найти и выделить/заменить)) 
+--(для импорта данных из файла quotes_task необходимо заменить запятые на точки
+--в столбцах с данными типа real(функция в excel - найти и выделить/заменить)) 
+
 --Команда импортирует данные в созданную таблицу. Выполнять через терминал  SQL Shell,
 --так как в другом способе могут возникнуть проблемы с доступом к файлу
 
