@@ -53,6 +53,7 @@ ALTER TABLE public.bond_description_task
 
 
 --  Создаем таблицу quotes_task  с нужными форматом и нужным количеством полей, предварительно удаляем старую версию таблицы.
+-- Отметим, что "ID" и "ISIN"  являются внешними ключами к данной таблице
 
 DROP TABLE if exists public.quotes_task;
 CREATE TABLE public.quotes_task
