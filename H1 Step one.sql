@@ -1,8 +1,9 @@
--- Видим что данные в экселе, поэтому для импорта сохраняем  файлы в формате CSV (файл/сохранить как)
+-- Видим что данные в экселе, поэтому для импорта сохраняем  файлы в формате CSV(файл/сохранить как),
+--предварительно визуально пронализировав на их корректность.
+
 --(при импорте данных из файла bond_description_task была ошибка в столбцах HaveOffer, AmortisedMty и IsConvertible. 
 --по одному эмитенту данные в этих столбцах были в форме даты, а не boolean как в остальных строках,
---по умолчанию оставил клетки пустыми).
-
+--необходимо изменить формат данных ячеек на числовой.
 -- Создаем первую таблицу bond_description_task  с нужными форматом и нужным количеством полей, предварительно удаляем старую версию таблицы
 DROP TABLE if exists public.bond_description_task;
 CREATE TABLE public.bond_description_task
@@ -50,7 +51,7 @@ ALTER TABLE public.bond_description_task
 
 \copy public.bond_description_task FROM 'C:/data/bond_description_task.csv' DELIMITER ';' CSV HEADER ENCODING 'WIN 1251';
 
-
+--(для импорта данных из файла quotes_task необходимо заменить запятые на точки в данных типа real)
 --  Создаем таблицу quotes_task  с нужными форматом и нужным количеством полей, предварительно удаляем старую версию таблицы.
 
 DROP TABLE if exists public.quotes_task;
