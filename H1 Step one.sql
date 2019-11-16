@@ -85,7 +85,7 @@ CREATE TABLE public.quotes_task
     "FACEVALUE" smallint,
     "ISIN" character varying COLLATE pg_catalog."default",
     "ISSUER" character varying COLLATE pg_catalog."default",
-    "ISSUESIZE" integer,
+    "ISSUESIZE" bigint,
     "MAT_DATE" date,
     "MPRICE" real,
     "MPRICE2" real,
