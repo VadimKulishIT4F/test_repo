@@ -1,9 +1,6 @@
 -- Видим что данные в экселе, поэтому для импорта сохраняем  файлы в формате CSV(файл/сохранить как),
 --предварительно визуально пронализировав на их корректность.
 
---(при импорте данных из файла bond_description_task была ошибка в столбцах HaveOffer, AmortisedMty и IsConvertible. 
---по одному эмитенту данные в этих столбцах были в форме даты, а не boolean как в остальных строках,
---необходимо изменить формат данных ячеек на числовой.
 -- Создаем первую таблицу bond_description_task  с нужными форматом и нужным количеством полей, предварительно удаляем старую версию таблицы
 DROP TABLE if exists public.bond_description_task;
 CREATE TABLE public.bond_description_task
@@ -45,13 +42,15 @@ TABLESPACE pg_default;
 ALTER TABLE public.bond_description_task
     OWNER to postgres;
 
-
+--(при импорте данных из файла bond_description_task была ошибка в столбцах HaveOffer, AmortisedMty и IsConvertible. 
+--по одному эмитенту данные в этих столбцах были в форме даты, а не boolean как в остальных строках,
+--необходимо изменить формат данных ячеек на числовой.
 --Команда импортирует данные в созданную таблицу. Выполнять через терминал  SQL Shell,
 --так как в другом способе могут возникнуть проблемы с доступом к файлу
 
 \copy public.bond_description_task FROM 'C:/data/bond_description_task.csv' DELIMITER ';' CSV HEADER ENCODING 'WIN 1251';
 
---(для импорта данных из файла quotes_task необходимо заменить запятые на точки в данных типа real)
+
 --  Создаем таблицу quotes_task  с нужными форматом и нужным количеством полей, предварительно удаляем старую версию таблицы.
 
 DROP TABLE if exists public.quotes_task;
@@ -101,7 +100,8 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.quotes_task
     OWNER to postgres;
-    
+ 
+--(для импорта данных из файла quotes_task необходимо заменить запятые на точки в столбцах с данными типа real(найти и выделить/заменить)) 
 --Команда импортирует данные в созданную таблицу. Выполнять через терминал  SQL Shell,
 --так как в другом способе могут возникнуть проблемы с доступом к файлу
 
