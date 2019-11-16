@@ -91,7 +91,9 @@ CREATE TABLE public.quotes_task
     "YIELD_ASK" real,
     "YIELD_BID" real
 )
-
+WITH (
+    OIDS = FALSE
+)
 TABLESPACE pg_default;
 
 --Команда назначает владельца таблицы
