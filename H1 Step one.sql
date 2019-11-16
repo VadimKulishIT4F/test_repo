@@ -91,7 +91,6 @@ CREATE TABLE public.quotes_task
     "Y2O_BID" real,
     "YIELD_ASK" real,
     "YIELD_BID" real
-    CONSTRAINT quotes_task_pkey FOREIGN KEY ("ID","ISIN")
 )
 WITH (
     OIDS = FALSE
