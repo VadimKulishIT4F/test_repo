@@ -2,7 +2,11 @@
 -- Видим что данные в экселе, поэтому для импорта сохраняем  файлы в формате CSV(файл/сохранить как),
 --предварительно откорректировав каждый файл.
 
--- Создаем первую таблицу bond_description_task  с нужными форматом и нужным количеством полей, предварительно удаляем старую версию таблицы
+-- Создаем первую таблицу bond_description_task  с нужными форматом и нужным количеством полей 
+---предварительно удаляем старую версию таблицы
+--(некоторые столбцы таблицы спрятаны, нужно выделить все столбцы таблицы  в excel файле, затем правая кнопка мыши, нажать отобразить)
+
+
 DROP TABLE if exists public.bond_description_task;
 CREATE TABLE public.bond_description_task
 (
@@ -20,8 +24,34 @@ CREATE TABLE public.bond_description_task
 	"ISINCode" varchar (12),
 	"Status" text,
 	"HaveDefault" boolean,
+        "IsLombardCBR_NRD" boolean,
+        "IsQualified_NRD" boolean,
+        "ForMarketBonds_NRD" boolean,
+        "MicexList_NRD" text COLLATE pg_catalog."default",
+        "Basis" text COLLATE pg_catalog."default",
+        "Basis_NRD" text COLLATE pg_catalog."default",
+        "Base_Month" text COLLATE pg_catalog."default",
+        "Base_Year" text COLLATE pg_catalog."default",
+        "Coupon_Period_Base_ID" bigint,
+        "AccruedintCalcType" boolean,
+        "IsGuaranteed" boolean,
 	"GuaranteeType" text,
 	"GuaranteeAmount" text,
+	"GuarantVal" bigint,
+	"Securitization" text COLLATE pg_catalog."default",
+        "CouponPerYear" integer,
+        "Cp_Type_ID" integer,
+        "NumCoupons" integer,
+        "NumCoupons_M" integer,
+        "NumCoupons_NRD" integer,
+        "Country" text COLLATE pg_catalog."default",
+        "FaceFTName" text COLLATE pg_catalog."default",
+        "FaceFTName_M" integer,
+        "FaceFTName_NRD" text COLLATE pg_catalog."default",
+        "FaceValue" real,
+        "FaceValue_M" integer,
+        "FaceValue_NRD" real,
+        "CurrentFaceValue_NRD" real,
 	"BorrowerName" text,
 	"BorrowerOKPO" integer,
 	"BorrowerSector" text,
@@ -46,7 +76,8 @@ ALTER TABLE public.bond_description_task
 --(при импорте данных из файла bond_description_task была ошибка в столбцах HaveOffer, AmortisedMty и IsConvertible по 133 строке. 
 -- в 133 строке данные в этих столбцах были типа date, а не boolean как в остальных строках,
 --заменим формат в данных ячейках на текстовый, получим HaveOffer = 1, AmortisedMty = 0, IsConvertible = 0 в 133 строке
---сохраним файл в формате CSV.
+-- в столбце GuarantVal заменим формат на числовой, 0 чисел после запятой т.к. данные отражаются некорректно.
+-- даллее сохраняем файл в формате CSV.
 
 --Команда импортирует данные в созданную таблицу. Выполнять через терминал  SQL Shell,
 --так как в другом способе могут возникнуть проблемы с доступом к файлу
@@ -62,7 +93,7 @@ DROP TABLE if exists public.quotes_task;
 CREATE TABLE public.quotes_task
 (
     "ID" integer NOT NULL,
-    "TIME" integer NOT NULL,
+    "TIME" date NOT NULL,
     "ACCRUEDINT" real,
     "ASK" real,
     "ASK_SIZE" integer,
@@ -81,8 +112,8 @@ CREATE TABLE public.quotes_task
     "CPN" real,
     "CPN_DATE" date,
     "CPN_PERIOD" smallint,
-    "DEAL_ACC" smallint,
-    "FACEVALUE" smallint,
+    "DEAL_ACC" integer,
+    "FACEVALUE" real,
     "ISIN" character varying COLLATE pg_catalog."default",
     "ISSUER" character varying COLLATE pg_catalog."default",
     "ISSUESIZE" bigint,
@@ -90,7 +121,7 @@ CREATE TABLE public.quotes_task
     "MPRICE" real,
     "MPRICE2" real,
     "SPREAD" real,
-    "VOL_ACC" integer,
+    "VOL_ACC" bigint,
     "Y2O_ASK" real,
     "Y2O_BID" real,
     "YIELD_ASK" real,
@@ -108,7 +139,10 @@ ALTER TABLE public.quotes_task
  
 --(для импорта данных из файла quotes_task необходимо сначала  настроить excel, убрав галочку
 --c "использовать системные разделители"  и поставить точку вместо запятой (параметры excel/дополнительно)
---затем открыть файл quotes_task и сохранить в формате CSV, предварительно удалив лист fields.
+--затем открыть файл quotes_task,  в столбцах VOL_ACC и ISSUESIZE данные отражаются некорректно
+--ставим формат столбца числовой, 0 чисел после запятой
+-- в столбцах BAYBACKDATE и TIME  ставим формат дату, т.к. данные некорректно отражаются. 
+--сохраняем файл в формате CSV, предварительно удалив лист fields.
 
 --Команда импортирует данные в созданную таблицу. Выполнять через терминал  SQL Shell,
 --так как в другом способе могут возникнуть проблемы с доступом к файлу 
