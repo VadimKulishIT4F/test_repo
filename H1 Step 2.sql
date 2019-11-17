@@ -23,3 +23,7 @@ SET "IssuerName"=public.bond_description_task."IssuerName",
 "IssuerSector"=public.bond_description_task."BorrowerSector"
 FROM public.bond_description_task
 WHERE listing_task."ISIN"=public.bond_description_task."ISIN, RegCode, NRDCode";
+ 
+ --  Для проверки добавления данных выполним данную команду
+
+SELECT * FROM public.listing_task;
