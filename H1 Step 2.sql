@@ -24,7 +24,7 @@ SET "IssuerName"=public.bond_description_task."IssuerName",
 FROM public.bond_description_task
 WHERE listing_task."ISIN"=public.bond_description_task."ISIN, RegCode, NRDCode";
  
- --  Для проверки добавления данных можно данную команду
+ --  Для проверки добавления данных можно выполнить данную команду
 
 SELECT * FROM public.listing_task;
 
@@ -35,10 +35,10 @@ ALTER TABLE public.listing_task
 ADD "BOARDID" TEXT,
 ADD "BOARDNAME" VARCHAR;
 
--- Для проверки добавления столбцов выполним данную команду
+-- Для проверки добавления столбцов можно выполнить данную команду
 SELECT * FROM public.listing_task;
 
--- Данная команда добавляет данные данные из таблицы quotes_task  в созданные стоблцы из предыдущего пункта
+-- Данная команда добавляет данные из таблицы quotes_task  в созданные стоблцы из предыдущего пункта
 
 UPDATE PUBLIC.listing_task
 SET "BOARDID" = PUBLIC.quotes_task."BOARDID",
@@ -46,7 +46,7 @@ SET "BOARDID" = PUBLIC.quotes_task."BOARDID",
 FROM PUBLIC.quotes_task
 WHERE PUBLIC.listing_task."ISIN" = PUBLIC.quotes_task."ISIN";
 
- --  Для проверки добавления данных можно данную команду
+ --  Для проверки добавления данных можно выполнить данную команду
 
 SELECT * FROM public.listing_task;
 
