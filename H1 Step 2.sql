@@ -44,7 +44,7 @@ UPDATE PUBLIC.listing_task
 SET "BOARDID" = PUBLIC.quotes_task."BOARDID",
 "BOARDNAME" = PUBLIC.quotes_task."BOARDNAME"
 FROM PUBLIC.quotes_task
-WHERE PUBLIC.listing_task."ID" = PUBLIC.quotes_task."ID";
+WHERE PUBLIC.listing_task."ISIN" = PUBLIC.quotes_task."ISIN";
 
  --  Для проверки добавления данных можно данную команду
 
