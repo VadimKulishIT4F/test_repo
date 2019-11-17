@@ -27,3 +27,13 @@ WHERE listing_task."ISIN"=public.bond_description_task."ISIN, RegCode, NRDCode";
  --  Для проверки добавления данных выполним данную команду
 
 SELECT * FROM public.listing_task;
+
+-- Команда добавляет новые столбцы в таблицу listing_task исходя из информации о площадке, 
+--которая находитсся в таблице quotes_task
+
+ALTER TABLE public.listing_task 
+ADD "BOARDID" TEXT,
+ADD "BOARDNAME" VARCHAR;
+
+-- Для проверки добавления столбцов выполним данную команду
+SELECT * FROM public.listing_task;
