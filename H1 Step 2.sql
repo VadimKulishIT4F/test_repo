@@ -9,7 +9,7 @@ add "IssuerName_NRD" text,
 add "IssuerOKPO" integer,
 add "IssuerSector" text;
 
---  Для проверки добавления столбцов выполним данную команду
+--  Для проверки добавления столбцов можно выполнить данную команду
 
 SELECT * FROM public.listing_task;
 
@@ -24,7 +24,7 @@ SET "IssuerName"=public.bond_description_task."IssuerName",
 FROM public.bond_description_task
 WHERE listing_task."ISIN"=public.bond_description_task."ISIN, RegCode, NRDCode";
  
- --  Для проверки добавления данных выполним данную команду
+ --  Для проверки добавления данных можно данную команду
 
 SELECT * FROM public.listing_task;
 
@@ -37,3 +37,16 @@ ADD "BOARDNAME" VARCHAR;
 
 -- Для проверки добавления столбцов выполним данную команду
 SELECT * FROM public.listing_task;
+
+-- Данная команда добавляет данные данные из таблицы quotes_task  в созданные стоблцы из предыдущего пункта
+
+UPDATE PUBLIC.listing_task
+SET "BOARDID" = PUBLIC.quotes_task."BOARDID",
+"BOARDNAME" = PUBLIC.quotes_task."BOARDNAME"
+FROM PUBLIC.quotes_task
+WHERE PUBLIC.listing_task."ID" = PUBLIC.quotes_task."ID";
+
+ --  Для проверки добавления данных можно данную команду
+
+SELECT * FROM public.listing_task;
+
