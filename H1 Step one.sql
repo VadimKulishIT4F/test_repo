@@ -159,12 +159,11 @@ DROP TABLE if exists public.listing_task;
 CREATE TABLE public.listing_task
 (
     "ID" integer NOT NULL,
-    "ISIN" character varying[] COLLATE pg_catalog."default",
+    "ISIN" character varying COLLATE pg_catalog."default",
     "Platform" text COLLATE pg_catalog."default",
     "Section" text COLLATE pg_catalog."default",
     CONSTRAINT listing_task_pkey PRIMARY KEY ("ID")
 )
-
 TABLESPACE pg_default;
 
 -- Команда назначает владельца таблицы
