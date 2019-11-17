@@ -177,3 +177,8 @@ ALTER TABLE public.listing_task
 -- 'WIN 1251' мы используем , потому что в файлах присутствует кириллица.
 
 \copy public.listing_task FROM 'C:/data/listing_task.csv' DELIMITER ';' CSV HEADER ENCODING 'WIN 1251';
+
+-- в результате всех операций должны получиться таблицы:
+--listing_task - 20 680 строк
+--bond_description_task - 2 934 строк
+--quotes_task - 1 047 800 строк.
