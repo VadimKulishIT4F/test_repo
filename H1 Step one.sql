@@ -87,8 +87,6 @@ ALTER TABLE public.bond_description_task
 
 
 --  Создаем таблицу quotes_task  с нужными форматом и нужным количеством полей, предварительно удаляем старую версию таблицы.
--- Отметим, что "ID"(listing_task) и "ISIN"(bond_description_task)  являются внешними ключами к данной таблице
---(только задать их я не смог почему-то...)
 
 DROP TABLE if exists public.quotes_task;
 CREATE TABLE public.quotes_task
@@ -152,8 +150,7 @@ ALTER TABLE public.quotes_task
 \copy public.quotes_task FROM 'C:/data/quotes_task.csv' DELIMITER ';' CSV HEADER ENCODING 'WIN 1251';
 
 
--- Создаем таблицу listing_task  с нужными форматом и нужным количеством полей, предварительно удаляем старую версию таблицы.
---Отметим, что ISIN(bond_description_task) является внешним ключом к данной таблице.
+--  Создаем таблицу listing_task  с нужными форматом и нужным количеством полей, предварительно удаляем старую версию таблицы.
 
 DROP TABLE if exists public.listing_task;
 CREATE TABLE public.listing_task
