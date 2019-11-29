@@ -50,3 +50,5 @@ WHERE PUBLIC.listing_task."ISIN" = PUBLIC.quotes_task."ISIN";
 
 SELECT * FROM public.listing_task;
 
+-- Комментарий:
+-- на будущее: проверочные/необязательные запросы лучше комментировать. 
