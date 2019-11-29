@@ -14,3 +14,6 @@ FROM public.listing_task
 WHERE public.listing_task."ISIN" = public.bond_description_task."ISINCode";
 ALTER TABLE public.bond_description_task 
 ADD CONSTRAINT fr_key_1 FOREIGN KEY ("SecurityID") REFERENCES public.listing_task ("ID");
+
+-- Комментарий:
+-- таблицу котировок с таблицей листинга следует связывать по ID. Т.к. котировки относятся к "бамаге на плащадке", а это и есть смысл ID. 
