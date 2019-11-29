@@ -2,3 +2,6 @@
 select  "IssuerName", "ISIN"
 from public.listing_task 
 where "Section"=' Основной' or "Section"=' МБ Основной Т+' or "Section"=' МБ Основной Т+'
+
+-- Комментарий:
+-- Все получится!
